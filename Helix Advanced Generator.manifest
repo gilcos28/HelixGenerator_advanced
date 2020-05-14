@@ -1,0 +1,13 @@
+{
+	"autodeskProduct":	"Fusion360",
+	"type":	"addin",
+	"id":	"69a89a2b-f043-4fdc-964d-b99ae86b214a",
+	"author":	"Gil Cohen",
+	"description":	{
+		"":	"Based on the Helix Generator plug-in and will allow the user to spiral helix with changing radius and height pitch from point-to-point."
+	},
+	"version":	"",
+	"runOnStartup":	false,
+	"supportedOS":	"windows|mac",
+	"editEnabled":	true
+}
