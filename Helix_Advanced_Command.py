@@ -203,7 +203,7 @@ class Helix_Advanced_Command(Fusion360CommandBase):
         tabInputs1.addIntegerSpinnerCommandInput('revolutions', 'Revolutions', 0, 1000, 1, 5)
 
         # input radius Equation
-        tabInputs1.addStringValueInput ('r1', 'Radius Eq (t,r,res)', 'r*(0.95^t)')
+        tabInputs1.addStringValueInput ('r1', 'Radius Eq (t,r,res)', 'r') # r*(0.95^t)
 
         # Radius steps of Incrimination
         DT1_input = adsk.core.ValueInput.createByReal(1)
@@ -214,10 +214,10 @@ class Helix_Advanced_Command(Fusion360CommandBase):
         tabInputs1.addValueInput('SP1', 'start counting at', '', start_r_input)
 
         # accumulator algorithm for Z axis
-        accumulator = tabInputs1.addBoolValueInput('accumulator', 'Accumulator on', True, '', True)
+        accumulator = tabInputs1.addBoolValueInput('accumulator', 'Accumulator on', True, '', False)
 
         # input height Equation
-        tabInputs1.addStringValueInput('z1', 'Pitch Eq (t,p,res)', '0.95')
+        tabInputs1.addStringValueInput('z1', 'Pitch Eq (t,p,res)', 't*p/res')
 
         # height steps of Incrimination
         DT2_input = adsk.core.ValueInput.createByReal(1)
