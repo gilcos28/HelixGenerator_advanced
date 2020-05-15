@@ -13,7 +13,7 @@ In the downloaded folder "Helix Advanced Generator" you will find the installati
 You can get additional information from this [link](https://tapnair.github.io/installation.html)
 
 ## Usage:
-Select a plane or planar face and let it generate a helix from the origin of that plane and <br>
+Select a plane or planar face and let it generate a helix from the origin of that plane or face and <br>
 Utilize the advanced features to shape it in different ways for your project
 Read the README TAB for more information
 
