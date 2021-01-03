@@ -3,37 +3,52 @@
 # Importing sample Fusion Command
 # Could import multiple Command definitions here
 
-from .Helix_Advanced_Command import Helix_Advanced_Command
+import adsk.core, adsk.fusion, traceback
 
-commands = []
-command_definitions = []
+ui = None
+try:    
+    app = adsk.core.Application.get()
+    ui  = app.userInterface
+        
+    from .Helix_Advanced_Command import Helix_Advanced_Command
 
-# Define parameters for vent maker command
-cmd = {
-    'cmd_name': 'Helix Plus',
-    'cmd_description': 'Create an Approximate variable Helical Curve',
-    'cmd_resources': './resources',
-    'cmd_id': 'cmdID_Helix_Advanced_Command',
-    'workspace': 'FusionSolidEnvironment',
-    'toolbar_panel_id': 'SketchPanel',
-    'class': Helix_Advanced_Command
-}
-command_definitions.append(cmd)
+    commands = []
+    command_definitions = []
 
-# Set to True to display various useful messages when debugging your app
-debug = False
+    # Define parameters for vent maker command
+    cmd = {
+        'cmd_name': 'Helix Plus',
+        'cmd_description': 'Create an Approximate variable Helical Curve',
+        'cmd_resources': './resources',
+        'cmd_id': 'cmdID_Helix_Advanced_Command',
+        'workspace': 'FusionSolidEnvironment',
+        'toolbar_panel_id': 'SketchPanel',
+        'class': Helix_Advanced_Command
+    }
+    command_definitions.append(cmd)
 
-# Don't change anything below here:
-for cmd_def in command_definitions:
-    command = cmd_def['class'](cmd_def, debug)
-    commands.append(command)
+    # Set to True to display various useful messages when debugging your app
+    debug = False
+
+    # Don't change anything below here:
+    for cmd_def in command_definitions:
+        command = cmd_def['class'](cmd_def, debug)
+        commands.append(command)
+except:
+    if ui:
+        ui.messageBox('Failed:\n{}'.format(traceback.format_exc()))
 
 
 def run(context):
-    for run_command in commands:
-        run_command.on_run()
-
-
+    ui = None
+    try:
+        app = adsk.core.Application.get()
+        ui  = app.userInterface
+        for run_command in commands:
+            run_command.on_run()
+    except:
+        if ui:
+            ui.messageBox('Failed:\n{}'.format(traceback.format_exc()))
 def stop(context):
     for stop_command in commands:
         stop_command.on_stop()
